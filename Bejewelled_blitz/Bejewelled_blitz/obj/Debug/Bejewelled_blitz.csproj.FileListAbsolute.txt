@@ -1,0 +1,6 @@
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.exe.config
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.exe
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.pdb
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.csprojResolveAssemblyReference.cache
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.exe
+D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.pdb
