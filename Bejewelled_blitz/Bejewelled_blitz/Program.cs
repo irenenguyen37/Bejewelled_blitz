@@ -9,26 +9,27 @@ namespace Bejewelled_blitz
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            Console.WindowWidth = 170;
-            Console.WindowHeight = 40;
+            Settings.sttngs();
+            int a = Settings.y();
+            int b = Settings.x();
+            int n = Settings.colors();
+            Rekords[] r = Rekords.Current();
+
+            Console.Write("Szeretné megnézni az eddigi rekordokat? (I/N): ");
+            WriteRecords(Console.ReadLine(), r, 0);
 
             Console.Write("Nev: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine().Replace(" ","_");
             Console.Write("Mennyi ideig szeretne jatszani (*60 mp): ");
             double time = 60 * double.Parse(Console.ReadLine());
             Console.WriteLine();
 
-
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
-            //jatektabla merete
-            int a = 24; int b = 79;
-            //szinek szama (m-n, ahol m>n)
-            int n = 1; int m = 6;
-
-            int[,] table = crt(a, b, n, m);
+            int[,] table = crt(a, b, n);
             wrt(table);
             color1(1);
             stopwatch.Start();
@@ -42,7 +43,7 @@ namespace Bejewelled_blitz
                 point = point + pnt(table, xy[0], xy[1]);
                 point = point + pnt(table, xy[2], xy[3]);
                 wrt(table);
-                reWrt(table, a, b, n, m, point);
+                reWrt(table, a, b, n, point);
             }
 
             Clr(b + 3, 2);
@@ -51,10 +52,14 @@ namespace Bejewelled_blitz
             Console.WriteLine("Vége");
             Console.WriteLine("Összegyűjtött pontok: " + point);
 
-            Console.ReadLine();
+            System.Threading.Thread.Sleep(775);
+            Rekords gamer = new Rekords(name, time, point);
+            Rekords.AddNew(r, gamer);
+            WriteRecords("I", r, 1);
+
         }
 
-        static int[,] crt(int a, int b, int n, int m)
+        static int[,] crt(int a, int b, int n)
         {
             int[,] table = new int[a, b];
             Random r = new Random();
@@ -62,7 +67,7 @@ namespace Bejewelled_blitz
             {
                 for (int j = 0; j < b; j++)
                 {
-                    table[i, j] = r.Next(n, m);
+                    table[i, j] = r.Next(1, n);
                 }
             }
 
@@ -330,7 +335,7 @@ namespace Bejewelled_blitz
             return j;
         }
 
-        static void reWrt(int[,] t, int a, int b, int n, int m, int point)
+        static void reWrt(int[,] t, int a, int b, int n, int point)
         {
             Random rnd = new Random();
             for (int i = a - 1; i >= 0; i--)
@@ -352,7 +357,7 @@ namespace Bejewelled_blitz
                         }
                         else
                         {
-                            t[i, j] = rnd.Next(n, m);
+                            t[i, j] = rnd.Next(1, n);
                         }
                     }
                     color2(t[i, j]);
@@ -362,6 +367,17 @@ namespace Bejewelled_blitz
             color1(1);
             Console.SetCursorPosition(50, 1);
             Console.Write("Pontok: " + point);
+        }
+
+        static void WriteRecords(string a, Rekords[] r, int b)
+        {
+            if (a.ToUpper() == "I")
+            {
+                Console.Clear();
+                Rekords.Show(r, b);
+            }
+            Console.Clear();
+
         }
     }
 }
