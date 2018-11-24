@@ -30,9 +30,9 @@ namespace Bejewelled_blitz
 
         public static int colors()
         {
-            //színek száma (a-1)
-            int a = 6;
-            return a;
+            //színek száma
+            int a = 5;
+            return a+1;
         }
 
         public static int x()

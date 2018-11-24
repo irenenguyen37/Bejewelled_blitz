@@ -67,9 +67,6 @@ namespace Bejewelled_blitz
                 lines[i] = sr.ReadLine();
                 string[] person = lines[i].Split();
                 rekord[i] = new Rekords(person[0],double.Parse(person[1]), int.Parse(person[2]));
-                //rekord[i].name = person[0];
-                //rekord[i].time = double.Parse(person[1]);
-                //rekord[i].points = int.Parse(person[2]);
             }
 
             sr.Close();
@@ -79,19 +76,27 @@ namespace Bejewelled_blitz
         public static void Show(Rekords[] r, int a)
         {
             Console.WriteLine("Rekordok:");
+            Console.WriteLine();
             if (a == 0)
             {
                 for (int i = 0; i < r.Length-1; i++)
                 {
-                    Console.WriteLine(r[i].name + "\t\t" + r[i].time + "mp\t\t" + r[i].points + " pont");
+                    Console.Write(r[i].name);
+                    Console.SetCursorPosition(20, i + 2);
+                    Console.WriteLine(r[i].time + " mp");
+                    Console.SetCursorPosition(35, i + 2);
+                    Console.WriteLine(r[i].points + " pont");
                 }
             }
             else
             {
                 for (int i = 0; i < r.Length; i++)
                 {
-                    Console.WriteLine(r[i].name + "\t\t" + r[i].time + "mp\t\t" + r[i].points + " pont");
-
+                    Console.Write(r[i].name);
+                    Console.SetCursorPosition(20, i + 2);
+                    Console.WriteLine(r[i].time + " mp");
+                    Console.SetCursorPosition(35, i + 2);
+                    Console.WriteLine(r[i].points + " pont");
                 }
                 Save(r);
             }
