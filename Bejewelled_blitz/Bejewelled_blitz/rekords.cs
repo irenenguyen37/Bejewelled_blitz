@@ -12,53 +12,6 @@ namespace Bejewelled_blitz
 
         Player[] rekords;
 
-        /*
-        string name;
-        double time;
-        int points;
-        */
-        #region Default
-        /*
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public double Time
-        {
-            get { return time; }
-        }
-
-        public int Points
-        {
-            set { points = value; }
-            get { return points; }
-        }
-
-        public Rekords(string n, double t)
-        {
-            this.name = n;
-            this.time = t;
-            this.points = 0;
-        }
-
-        public Rekords(string n, double t, int p)
-        {
-            this.name = n;
-            this.time = t;
-            this.points = p;
-        }
-
-        public Rekords()
-        {
-            this.name = "";
-            this.time = 0;
-            this.points = 0;
-        }
-        */
-        #endregion
-
-
         public Rekords(int num)
         {
             rekords = new Player[num];
@@ -71,7 +24,7 @@ namespace Bejewelled_blitz
             StreamReader sr = new StreamReader("rekords.txt", Encoding.Default);
             n = int.Parse(sr.ReadLine());
             sr.Close();
-            return n;
+            return n+1;
         }
         public void Current()
         {
@@ -87,6 +40,7 @@ namespace Bejewelled_blitz
                 string[] person = lines[i].Split();
                 rekords[i] = new Player(person[0],double.Parse(person[1]), int.Parse(person[2]));
             }
+            rekords[rekords.Length-1] = new Player();
             sr.Close();
         }
 
@@ -130,7 +84,7 @@ namespace Bejewelled_blitz
             else
             {
                 int i = 0;
-                while (i < rekords.Length && rekords[i].Time > a.Time)
+                while (i < rekords.Length && rekords[i].Time >= a.Time && rekords[i].Points > a.Points)
                 {
                     i++;
                 }

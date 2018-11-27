@@ -46,14 +46,13 @@ namespace Bejewelled_blitz
             this.points = p;
         }
 
-        /*
         public Player()
         {
             this.name = "";
             this.time = 0;
             this.points = 0;
         }
-        */
+ 
         #endregion
     }
 }

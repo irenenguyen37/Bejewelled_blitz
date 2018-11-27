@@ -1,7 +1,9 @@
-6
-Csoni 12 23
-Alma 6 17
-Name_Test_2 6 26
-Name_Test 6 4
-Csoni 6 9999
-Csoni 6 11
+8
+CSoni 3 18
+Csoni 3 8
+Csoni 3 8
+Csoni 3 8
+Csoni 3 7
+ 3 6
+Csoni 3 4
+Csoni 3 3
