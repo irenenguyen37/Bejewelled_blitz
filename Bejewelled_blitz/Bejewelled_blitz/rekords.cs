@@ -9,11 +9,16 @@ namespace Bejewelled_blitz
 {
     public class Rekords
     {
+
+        Player[] rekords;
+
+        /*
         string name;
         double time;
         int points;
-
+        */
         #region Default
+        /*
         public string Name
         {
             get { return name; }
@@ -50,88 +55,100 @@ namespace Bejewelled_blitz
             this.time = 0;
             this.points = 0;
         }
-
+        */
         #endregion
 
-        public static Rekords[] Current()
+
+        public Rekords(int num)
+        {
+            rekords = new Player[num];
+        }
+
+
+        public static int Num()
+        {
+            int n;
+            StreamReader sr = new StreamReader("rekords.txt", Encoding.Default);
+            n = int.Parse(sr.ReadLine());
+            sr.Close();
+            return n;
+        }
+        public void Current()
         {
             int n;
             StreamReader sr = new StreamReader("rekords.txt", Encoding.Default);
             n = int.Parse(sr.ReadLine());
 
-            Rekords[] rekord = new Rekords[n + 1];
             string[] lines = new string[n];
 
             for (int i = 0; i < n; i++)
             {
                 lines[i] = sr.ReadLine();
                 string[] person = lines[i].Split();
-                rekord[i] = new Rekords(person[0],double.Parse(person[1]), int.Parse(person[2]));
+                rekords[i] = new Player(person[0],double.Parse(person[1]), int.Parse(person[2]));
             }
-
             sr.Close();
-            return rekord;
         }
 
-        public static void Show(Rekords[] r, int a)
+        public void Show(int a)
         {
             Console.WriteLine("Rekordok:");
             Console.WriteLine();
             if (a == 0)
             {
-                for (int i = 0; i < r.Length-1; i++)
+                for (int i = 0; i < rekords.Length-1; i++)
                 {
-                    Console.Write(r[i].name);
+                    Console.Write(rekords[i].Name);
                     Console.SetCursorPosition(20, i + 2);
-                    Console.WriteLine(r[i].time + " mp");
+                    Console.WriteLine(rekords[i].Time + " mp");
                     Console.SetCursorPosition(35, i + 2);
-                    Console.WriteLine(r[i].points + " pont");
+                    Console.WriteLine(rekords[i].Points + " pont");
                 }
             }
             else
             {
-                for (int i = 0; i < r.Length; i++)
+                for (int i = 0; i < rekords.Length; i++)
                 {
-                    Console.Write(r[i].name);
+                    Console.Write(rekords[i].Name);
                     Console.SetCursorPosition(20, i + 2);
-                    Console.WriteLine(r[i].time + " mp");
+                    Console.WriteLine(rekords[i].Time + " mp");
                     Console.SetCursorPosition(35, i + 2);
-                    Console.WriteLine(r[i].points + " pont");
+                    Console.WriteLine(rekords[i].Points + " pont");
                 }
-                Save(r);
+                Save();
             }
 
             Console.ReadLine();
         }
 
-        public static void AddNew(Rekords[] r, Rekords a)
+        public void AddNew(Player a)
         {
-            if (r.Length == 1)
+            if (rekords.Length == 1)
             {
-                r[0] = a;
+                rekords[0] = a;
             }
             else
             {
                 int i = 0;
-                while (i < r.Length && r[i].time > a.time)
+                while (i < rekords.Length && rekords[i].Time > a.Time)
                 {
                     i++;
                 }
-                for (int j = r.Length-1; j > i; j--)
+                for (int j = rekords.Length-1; j > i; j--)
                 {
-                    r[j] = r[j-1];
+                    rekords[j] = rekords[j-1];
                 }
-                r[i] = a;
+                rekords[i] = a;
             }
         }
 
-        private static void Save(Rekords[] r)
+        private void Save()
         {
             StreamWriter sw = new StreamWriter("rekords.txt");
-            sw.WriteLine(r.Length);
-            for (int i = 0; i < r.Length; i++)
+            sw.WriteLine(rekords.Length);
+            for (int i = 0; i < rekords.Length; i++)
             {
-                sw.WriteLine(r[i].name + " " + r[i].time + " " + r[i].points);
+                sw.WriteLine(rekords[i].Name + " " + rekords[i].Time + " " + rekords[i].Points);
             }
             sw.Close();
 

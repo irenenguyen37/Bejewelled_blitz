@@ -16,7 +16,9 @@ namespace Bejewelled_blitz
             int a = Settings.y();
             int b = Settings.x();
             int n = Settings.colors();
-            Rekords[] r = Rekords.Current();
+
+            Rekords r = new Rekords(Rekords.Num());
+            r.Current();
 
             Console.Write("Szeretné megnézni az eddigi rekordokat? (I/N): ");
             WriteRecords(Console.ReadLine(), r, 0);
@@ -53,8 +55,8 @@ namespace Bejewelled_blitz
             Console.WriteLine("Összegyűjtött pontok: " + point);
 
             System.Threading.Thread.Sleep(775);
-            Rekords gamer = new Rekords(name, time, point);
-            Rekords.AddNew(r, gamer);
+            Player gamer = new Player(name, time, point);
+            r.AddNew(gamer);
             WriteRecords("I", r, 1);
 
         }
@@ -261,8 +263,6 @@ namespace Bejewelled_blitz
             int j = 0;
             deleted[0, i] = x;
             deleted[1, i] = y;
-            //Console.WriteLine(deleted[0,0] + " " + deleted[1,0]);
-            //Console.WriteLine(x + y);
 
             int a = t[y, x];
 
@@ -369,12 +369,12 @@ namespace Bejewelled_blitz
             Console.Write("Pontok: " + point);
         }
 
-        static void WriteRecords(string a, Rekords[] r, int b)
+        static void WriteRecords(string a, Rekords r, int b)
         {
             if (a.ToUpper() == "I")
             {
                 Console.Clear();
-                Rekords.Show(r, b);
+                r.Show(b);
             }
             Console.Clear();
 

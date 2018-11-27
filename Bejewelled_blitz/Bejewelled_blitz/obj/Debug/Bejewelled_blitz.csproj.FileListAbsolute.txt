@@ -4,3 +4,10 @@ D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\
 D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.csprojResolveAssemblyReference.cache
 D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.exe
 D:\OneDrive\VisualStudio\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.pdb
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.exe.config
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.exe
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\bin\Debug\Bejewelled_blitz.pdb
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.csprojAssemblyReference.cache
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.exe
+D:\Documents\Visual Studio 2017\Projects\Bejewelled_blitz\Bejewelled_blitz\Bejewelled_blitz\obj\Debug\Bejewelled_blitz.pdb
