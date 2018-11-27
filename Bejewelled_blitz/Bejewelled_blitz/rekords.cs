@@ -11,6 +11,7 @@ namespace Bejewelled_blitz
     {
 
         Player[] rekords;
+        int newIndex;
 
         public Rekords(int num)
         {
@@ -63,6 +64,11 @@ namespace Bejewelled_blitz
             {
                 for (int i = 0; i < rekords.Length; i++)
                 {
+                    if (i == newIndex)
+                        {   Table.color1(2); }
+                    else
+                        { Table.color1(1); }
+
                     Console.Write(rekords[i].Name);
                     Console.SetCursorPosition(20, i + 2);
                     Console.WriteLine(rekords[i].Time + " mp");
@@ -80,11 +86,12 @@ namespace Bejewelled_blitz
             if (rekords.Length == 1)
             {
                 rekords[0] = a;
+                newIndex = 0;
             }
             else
             {
                 int i = 0;
-                while (i < rekords.Length && rekords[i].Time >= a.Time && rekords[i].Points > a.Points)
+                while (i < rekords.Length && rekords[i].Time >= a.Time && rekords[i].Points >= a.Points)
                 {
                     i++;
                 }
@@ -93,6 +100,7 @@ namespace Bejewelled_blitz
                     rekords[j] = rekords[j-1];
                 }
                 rekords[i] = a;
+                newIndex =  i;
             }
         }
 

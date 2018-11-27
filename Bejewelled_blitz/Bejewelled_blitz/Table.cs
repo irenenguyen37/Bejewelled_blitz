@@ -69,7 +69,7 @@ namespace Bejewelled_blitz
             Console.WriteLine();
         }
 
-        static void color1(int a)
+        public static void color1(int a)
         {
             if (a % 2 == 0)
             {
@@ -310,6 +310,7 @@ namespace Bejewelled_blitz
                     Console.Write(table[i, j] + ' ');
                 }
             }
+
             color1(1);
             Console.SetCursorPosition(50, 1);
             Console.Write("Pontok: " + point);
