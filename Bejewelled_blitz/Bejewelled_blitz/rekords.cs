@@ -65,7 +65,7 @@ namespace Bejewelled_blitz
                 for (int i = 0; i < rekords.Length; i++)
                 {
                     if (i == newIndex)
-                        {   Table.color1(2); }
+                        { Table.color1(2); }
                     else
                         { Table.color1(1); }
 
@@ -75,6 +75,7 @@ namespace Bejewelled_blitz
                     Console.SetCursorPosition(35, i + 2);
                     Console.WriteLine(rekords[i].Points + " pont");
                 }
+                Table.color1(1);
                 Save();
             }
 

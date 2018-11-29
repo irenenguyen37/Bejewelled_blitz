@@ -39,33 +39,37 @@ namespace Bejewelled_blitz
                 stopwatch.Start();
 
                 int[] xy;
-                int point = 0;
 
                 while (stopwatch.ElapsedMilliseconds / 1000 < time)
                 {
                     xy = table.chng();
-                    point = point + table.pnt(xy[0], xy[1]);
-                    point = point + table.pnt(xy[2], xy[3]);
+                    table.pnt(xy[0], xy[1]);
+                    table.pnt(xy[2], xy[3]);
                     table.wrt();
-                    table.reWrt(a, b, n, point);
+                    table.reWrt(a, b, n);
+
+                    Console.SetCursorPosition(50, 1);
+                    Console.Write("Pontok: " + table.Point);
                 }
 
                 table.Clr(b + 3, 2);
                 table.Clr(0, 4);
                 Console.SetCursorPosition(0, 1);
                 Console.WriteLine("Vége");
-                Console.WriteLine("Összegyűjtött pontok: " + point);
+                Console.WriteLine("Összegyűjtött pontok: " + table.Point);
 
                 System.Threading.Thread.Sleep(775);
-                Player gamer = new Player(name, time, point);
+                Player gamer = new Player(name, time, table.Point);
                 r.AddNew(gamer);
                 WriteRecords("I", r, 1);
 
                 Console.Write("Új játék?: ");
             } while (Console.ReadLine().ToUpper() == "I");
 
-        }
+            end();
 
+        }
+        
         static void WriteRecords(string a, Rekords r, int b)
         {
             if (a.ToUpper() == "I")
@@ -74,6 +78,20 @@ namespace Bejewelled_blitz
                 r.Show(b);
             }
             Console.Clear();
+        }
+
+        static void end()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2);
+            string a = "További szép napot!";
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write(a[i]);
+                System.Threading.Thread.Sleep(100);
+
+            }
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }

@@ -38,14 +38,14 @@ namespace Bejewelled_blitz
         public static int x()
         {
             //x tengely mérete
-            int a = 79;
+            int a = 20;
             return a;
         }
 
         public static int y()
         {
             //y tengely mérete
-            int a = 24;
+            int a = 10;
             return a;
         }
     }

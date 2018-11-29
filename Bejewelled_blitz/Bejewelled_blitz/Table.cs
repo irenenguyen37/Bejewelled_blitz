@@ -9,11 +9,19 @@ namespace Bejewelled_blitz
     public class Table
     {
         int[,] table;
+        int point;
+
+        public int Point
+        {
+            get { return point; }
+        }
 
         public Table(int a, int b, int n)
         {
             Random r = new Random();
             this.table = new int[a, b];
+            this.point = 0;
+
             for (int i = 0; i < a; i++)
             {
                 for (int j = 0; j < b; j++)
@@ -69,6 +77,8 @@ namespace Bejewelled_blitz
             Console.WriteLine();
         }
 
+        #region color settings
+
         public static void color1(int a)
         {
             if (a % 2 == 0)
@@ -83,6 +93,7 @@ namespace Bejewelled_blitz
             }
         }
 
+        
         static void color2(int a)
         {
             switch (a)
@@ -115,9 +126,10 @@ namespace Bejewelled_blitz
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.Black;
                     break;
-            }
-
+                }
         }
+
+        #endregion
 
         public int[] chng()
         {
@@ -202,7 +214,7 @@ namespace Bejewelled_blitz
             Console.SetCursorPosition(0, current);
         }
 
-        public int pnt(int x, int y)
+        public void pnt(int x, int y)
         {
             int[,] deleted = new int[2, table.GetLength(0) * table.GetLength(1)];
             int i = 0;
@@ -220,11 +232,11 @@ namespace Bejewelled_blitz
             if (j == 0)
             {
                 table[y, x] = a;
-                return j;
+                point = point + j;
             }
             else
             {
-                return j + 1;
+                point = point + j + 1;
             }
         }
 
@@ -281,7 +293,7 @@ namespace Bejewelled_blitz
             return j;
         }
 
-        public void reWrt(int a, int b, int n, int point)
+        public void reWrt(int a, int b, int n)
         {
             Random rnd = new Random();
             for (int i = a - 1; i >= 0; i--)
@@ -310,10 +322,7 @@ namespace Bejewelled_blitz
                     Console.Write(table[i, j] + ' ');
                 }
             }
-
             color1(1);
-            Console.SetCursorPosition(50, 1);
-            Console.Write("Pontok: " + point);
         }
 
     }
