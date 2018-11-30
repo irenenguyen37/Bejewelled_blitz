@@ -9,13 +9,9 @@ namespace Bejewelled_blitz
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Settings.sttngs();
-            int a = Settings.y();
-            int b = Settings.x();
-            int n = Settings.colors();
 
             do
             {
@@ -33,28 +29,21 @@ namespace Bejewelled_blitz
 
                 System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
-                Table table = new Table(a, b, n);
-                table.wrt();
+                Table table = new Table();
+                table.Wrt();
 
                 stopwatch.Start();
 
-                int[] xy;
-
                 while (stopwatch.ElapsedMilliseconds / 1000 < time)
                 {
-                    xy = table.chng();
-                    stopwatch.Stop();
-                    table.pnt(xy[0], xy[1]);
-                    table.pnt(xy[2], xy[3]);
-                    table.wrt();
-                    table.reWrt(a, b, n);
-                    stopwatch.Start();
+                    table.Chng();
+                    table.ReWrt();
 
                     Console.SetCursorPosition(50, 1);
                     Console.Write("Pontok: " + table.Point);
                 }
 
-                table.Clr(b + 3, 2);
+                table.Clr(Settings.xTg + 3, 2);
                 table.Clr(0, 4);
                 Console.SetCursorPosition(0, 1);
                 Console.WriteLine("Vége");
@@ -69,17 +58,15 @@ namespace Bejewelled_blitz
             } while (Console.ReadLine().ToUpper() == "I");
 
             end();
-
         }
         
         static void WriteRecords(string a, Rekords r, int b)
         {
+            Console.Clear();
             if (a.ToUpper() == "I")
             {
-                Console.Clear();
                 r.Show(b);
             }
-            Console.Clear();
         }
 
         static void end()
@@ -93,7 +80,7 @@ namespace Bejewelled_blitz
                 System.Threading.Thread.Sleep(100);
 
             }
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(750);
         }
     }
 }

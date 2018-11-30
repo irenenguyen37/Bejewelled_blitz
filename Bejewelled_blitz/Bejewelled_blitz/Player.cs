@@ -32,13 +32,6 @@ namespace Bejewelled_blitz
             set { points = value; }
         }
 
-        public Player(string n, double t)
-        {
-            this.name = n;
-            this.time = t;
-            this.points = 0;
-        }
-
         public Player(string n, double t, int p)
         {
             this.name = n;

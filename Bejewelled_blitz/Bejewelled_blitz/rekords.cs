@@ -9,7 +9,6 @@ namespace Bejewelled_blitz
 {
     public class Rekords
     {
-
         Player[] rekords;
         int newIndex;
 
@@ -17,7 +16,6 @@ namespace Bejewelled_blitz
         {
             rekords = new Player[num];
         }
-
 
         public static int Num()
         {
@@ -27,6 +25,7 @@ namespace Bejewelled_blitz
             sr.Close();
             return n+1;
         }
+
         public void Current()
         {
             int n;
@@ -65,9 +64,9 @@ namespace Bejewelled_blitz
                 for (int i = 0; i < rekords.Length; i++)
                 {
                     if (i == newIndex)
-                        { Table.color1(2); }
+                        { Settings.Color1(2); }
                     else
-                        { Table.color1(1); }
+                        { Settings.Color1(1); }
 
                     Console.Write(rekords[i].Name);
                     Console.SetCursorPosition(20, i + 2);
@@ -75,10 +74,9 @@ namespace Bejewelled_blitz
                     Console.SetCursorPosition(35, i + 2);
                     Console.WriteLine(rekords[i].Points + " pont");
                 }
-                Table.color1(1);
+                Settings.Color1(1);
                 Save();
             }
-
             Console.ReadLine();
         }
 
@@ -114,7 +112,6 @@ namespace Bejewelled_blitz
                 sw.WriteLine(rekords[i].Name + " " + rekords[i].Time + " " + rekords[i].Points);
             }
             sw.Close();
-
         }
     }
 }

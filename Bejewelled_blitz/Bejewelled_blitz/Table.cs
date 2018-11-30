@@ -10,131 +10,116 @@ namespace Bejewelled_blitz
     {
         int[,] table;
         int point;
+        private int[] changed;
 
         public int Point
         {
             get { return point; }
         }
 
-        public Table(int a, int b, int n)
+        public Table()
         {
             Random r = new Random();
-            this.table = new int[a, b];
+            this.table = new int[Settings.yTg, Settings.xTg];
             this.point = 0;
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < Settings.yTg; i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < Settings.xTg; j++)
                 {
-                   table[i, j] = r.Next(1, n);
+                   table[i, j] = r.Next(1, Settings.Color + 1);
                 }
             }
         }
 
-        public void wrt()
+        public void Wrt()
         {
             Console.SetCursorPosition(0, 3);
-
             Console.Write("   ");
-            int a = 1;
 
+            int a = 1;
             for (int i = 0; i < table.GetLength(1); i++)
             {
                 if (a < 10)
                 {
-                    color1(a);
+                    Settings.Color1(a);
                     Console.Write(a + " ");
                 }
                 else
                 {
-                    color1(a);
+                    Settings.Color1(a);
                     Console.Write(a);
                 }
                 a++;
             }
-            a = 1;
             Console.WriteLine();
 
+            a = 1;
             for (int i = 0; i < table.GetLength(0); i++)
             {
-                color1(a);
+                Settings.Color1(a);
                 if (a < 10)
                     Console.Write(a + " ");
                 else
                     Console.Write(a);
-                color1(1);
+                Settings.Color1(1);
                 Console.Write(" ");
 
                 for (int j = 0; j < table.GetLength(1); j++)
                 {
-                    color2(table[i, j]);
+                    Settings.Color2(table[i, j]);
                     Console.Write(table[i, j] + " ");
                 }
                 Console.WriteLine();
                 a++;
             }
-            color1(1);
+            Settings.Color1(1);
             Console.WriteLine();
         }
-
-        #region color settings
-
-        public static void color1(int a)
+        public void ReWrt()
         {
-            if (a % 2 == 0)
+            Random rnd = new Random();
+            for (int i = Settings.yTg - 1; i >= 0; i--)
             {
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-        }
-
-        
-        static void color2(int a)
-        {
-            switch (a)
-            {
-                case 1:
-                    Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case 2:
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case 3:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case 4:
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case 5:
-                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                    break;
-                case 6:
-                    Console.BackgroundColor = ConsoleColor.Gray;
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    break;
-                default:
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    break;
+                Console.SetCursorPosition(3, 4 + i);
+                for (int j = 0; j < Settings.xTg; j++)
+                {
+                    if (table[i, j] == 0)
+                    {
+                        int k = 1;
+                        while (i - k >= 0 && table[i - k, j] == 0)
+                        {
+                            k++;
+                        }
+                        if (i - k >= 0)
+                        {
+                            table[i, j] = table[i - k, j];
+                            table[i - k, j] = 0;
+                        }
+                        else
+                        {
+                            table[i, j] = rnd.Next(1, Settings.Color + 1);
+                        }
+                    }
+                    Settings.Color2(table[i, j]);
+                    Console.Write(table[i, j] + ' ');
                 }
+            }
+            Settings.Color1(1);
         }
 
-        #endregion
+        private void CellWrt(int x, int y, int c)
+        {
+            Console.SetCursorPosition(x * 2 + 3, y + 4);
+            Settings.Color2(c);
+            Console.Write(table[y, x] + " ");
+            //System.Threading.Thread.Sleep(1000);
+        }
 
         #region swap
-        public int[] chng()
+        public void Chng()
         {
-            int[] change = new int[4];
+            changed = new int[4];
             int a = table.GetLength(0) - 1;
             int b = table.GetLength(1) - 1;
             Console.SetCursorPosition(0, a + 6);
@@ -144,44 +129,45 @@ namespace Bejewelled_blitz
             do
             {
                 Console.Write("x1 (1-79): ");
-                change[0] = int.Parse(Console.ReadLine()) - 1;
+                changed[0] = int.Parse(Console.ReadLine()) - 1;
                 clrS++;
-            } while (change[0] > b || change[0] < 0);
+            } while (changed[0] > b || changed[0] < 0);
             do
             {
                 Console.Write("y1 (1-24): ");
-                change[1] = int.Parse(Console.ReadLine()) - 1;
+                changed[1] = int.Parse(Console.ReadLine()) - 1;
                 clrS++;
-            } while (change[1] > a || change[1] < 0);
+            } while (changed[1] > a || changed[1] < 0);
 
             string d;
             do
             {
                 Console.Write("Melyik irányba mozgassa? (w/a/s/d): ");
                 d = Console.ReadLine();
-                change[2] = change[0] + drctn(d)[0];
-                change[3] = change[1] + drctn(d)[1];
+                changed[2] = changed[0] + Drctn(d)[0];
+                changed[3] = changed[1] + Drctn(d)[1];
                 clrS++;
-            } while (change[2] > b || change[2] < 0 || change[3] > a || change[3] < 0 || Math.Abs(change[0] - change[2]) + Math.Abs(change[1] - change[3]) > 1 || !(d == "w" || d == "a" || d == "s" || d == "d"));
+            } while (changed[2] > b || changed[2] < 0 || changed[3] > a || changed[3] < 0 || Math.Abs(changed[0] - changed[2]) + Math.Abs(changed[1] - changed[3]) > 1 || !(d == "w" || d == "a" || d == "s" || d == "d"));
 
             Clr(a + 6, clrS);
 
-            int s = table[change[1], change[0]];
-            table[change[1], change[0]] = table[change[3], change[2]];
-            table[change[3], change[2]] = s;
+            int s = table[changed[1], changed[0]];
+            table[changed[1], changed[0]] = table[changed[3], changed[2]];
+            table[changed[3], changed[2]] = s;
 
-            Console.SetCursorPosition(change[0] * 2 + 3, change[1] + 4);
-            color2(table[change[1], change[0]]);
-            Console.Write(table[change[1], change[0]] + " ");
-            Console.SetCursorPosition(change[2] * 2 + 3, change[3] + 4);
-            color2(table[change[3], change[2]]);
-            Console.Write(table[change[3], change[2]] + " ");
-            color1(1);
+            CellWrt(changed[0], changed[1], table[changed[1], changed[0]]);
+            CellWrt(changed[2], changed[3], table[changed[3], changed[2]]);
 
-            return change;
+            Settings.Color1(1);
+
+            Pnt(changed[0], changed[1]);
+            if (table[changed[3], changed[2]] != 0)
+            {
+                Pnt(changed[2], changed[3]);
+            }
         }
 
-        int[] drctn(string d)
+        private int[] Drctn(string d)
         {
             int[] a = new int[2];
             switch (d)
@@ -217,7 +203,7 @@ namespace Bejewelled_blitz
         #endregion
 
         #region points
-        public void pnt(int x, int y)
+        private void Pnt(int x, int y)
         {
             int[,] deleted = new int[2, table.GetLength(0) * table.GetLength(1)];
             int i = 0;
@@ -226,16 +212,50 @@ namespace Bejewelled_blitz
             deleted[1, i] = y;
 
             int a = table[y, x];
-
             do
             {
-                j = dlt(deleted, a, deleted[0, i], deleted[1, i], j);
+                x = deleted[0, i];
+                y = deleted[1, i];
+                table[y, x] = 0;
+                CellWrt(x, y, 0);
+
+                if (x - 1 >= 0)
+                {
+                    if (table[y, x - 1] == a)
+                    {
+                        j = Rpt(deleted, j, x - 1, y);
+                    }
+                }
+                if (x + 1 < table.GetLength(1))
+                {
+                    if (table[y, x + 1] == a)
+                    {
+                        j = Rpt(deleted, j, x + 1, y);
+                    }
+                }
+                if (y - 1 >= 0)
+                {
+                    if (table[y - 1, x] == a)
+                    {
+                        j = Rpt(deleted, j, x, y - 1);
+                    }
+                }
+                if (y + 1 < table.GetLength(0))
+                {
+                    if (table[y + 1, x] == a)
+                    {
+                        j = Rpt(deleted, j, x, y + 1);
+                    }
+                }
                 i++;
+
             } while (i < j + 1);
+
             if (j == 0)
             {
                 table[y, x] = a;
                 point = point + j;
+                CellWrt(x, y, a);
             }
             else
             {
@@ -243,41 +263,7 @@ namespace Bejewelled_blitz
             }
         }
 
-        int dlt(int[,] deleted, int a, int x, int y, int j)
-        {
-            table[y, x] = 0;
-            if (x - 1 >= 0)
-            {
-                if (table[y, x - 1] == a)
-                {
-                    j = rpt(deleted, j, x - 1, y);
-                }
-            }
-            if (x + 1 < table.GetLength(1))
-            {
-                if (table[y, x + 1] == a)
-                {
-                    j = rpt(deleted, j, x + 1, y);
-                }
-            }
-            if (y - 1 >= 0)
-            {
-                if (table[y - 1, x] == a)
-                {
-                    j = rpt(deleted, j, x, y - 1);
-                }
-            }
-            if (y + 1 < table.GetLength(0))
-            {
-                if (table[y + 1, x] == a)
-                {
-                    j = rpt(deleted, j, x, y + 1);
-                }
-            }
-            return j;
-        }
-
-        int rpt(int[,] deleted, int j, int x, int y)
+        private int Rpt(int[,] deleted, int j, int x, int y)
         {
             int i = 0;
             while ((i < deleted.GetLength(1)) && (deleted[0, i] != x || deleted[1, i] != y))
@@ -300,37 +286,5 @@ namespace Bejewelled_blitz
             return j;
         }
         #endregion
-        public void reWrt(int a, int b, int n)
-        {
-            Random rnd = new Random();
-            for (int i = a - 1; i >= 0; i--)
-            {
-                Console.SetCursorPosition(3, 4 + i);
-                for (int j = 0; j < b; j++)
-                {
-                    if (table[i, j] == 0)
-                    {
-                        int k = 1;
-                        while (i - k >= 0 && table[i - k, j] == 0)
-                        {
-                            k++;
-                        }
-                        if (i - k >= 0)
-                        {
-                            table[i, j] = table[i - k, j];
-                            table[i - k, j] = 0;
-                        }
-                        else
-                        {
-                            table[i, j] = rnd.Next(1, n);
-                        }
-                    }
-                    color2(table[i, j]);
-                    Console.Write(table[i, j] + ' ');
-                }
-            }
-            color1(1);
-        }
-
     }
 }
