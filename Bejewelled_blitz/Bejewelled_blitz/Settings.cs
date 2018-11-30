@@ -13,7 +13,7 @@ namespace Bejewelled_blitz
         //y tengely mérete
         public static int yTg = 24;
         //Színek száma
-        public static int Color = 1;
+        public static int Color = 5;
 
         public static void sttngs()
         {
