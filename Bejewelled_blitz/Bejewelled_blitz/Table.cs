@@ -131,6 +131,7 @@ namespace Bejewelled_blitz
 
         #endregion
 
+        #region swap
         public int[] chng()
         {
             int[] change = new int[4];
@@ -213,7 +214,9 @@ namespace Bejewelled_blitz
             }
             Console.SetCursorPosition(0, current);
         }
+        #endregion
 
+        #region points
         public void pnt(int x, int y)
         {
             int[,] deleted = new int[2, table.GetLength(0) * table.GetLength(1)];
@@ -271,9 +274,7 @@ namespace Bejewelled_blitz
                     j = rpt(deleted, j, x, y + 1);
                 }
             }
-
             return j;
-
         }
 
         int rpt(int[,] deleted, int j, int x, int y)
@@ -283,6 +284,12 @@ namespace Bejewelled_blitz
             {
                 i++;
             }
+
+            if ((y == 0 && x == 0) )
+            {
+                j++;
+            }
+
             if (i >= deleted.GetLength(1))
             {
                 j++;
@@ -292,7 +299,7 @@ namespace Bejewelled_blitz
 
             return j;
         }
-
+        #endregion
         public void reWrt(int a, int b, int n)
         {
             Random rnd = new Random();

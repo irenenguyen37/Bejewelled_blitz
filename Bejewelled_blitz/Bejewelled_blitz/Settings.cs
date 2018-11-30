@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bejewelled_blitz
 {
-    public class Settings
+     public class Settings
     {
         public static void sttngs()
         {
@@ -18,6 +18,7 @@ namespace Bejewelled_blitz
             {
                 Console.WindowHeight = 40;
             }
+
             if (Console.LargestWindowWidth < 170)
             {
                 Console.WindowWidth = Console.LargestWindowWidth;
@@ -38,14 +39,14 @@ namespace Bejewelled_blitz
         public static int x()
         {
             //x tengely mérete
-            int a = 20;
+            int a = 79;
             return a;
         }
 
         public static int y()
         {
             //y tengely mérete
-            int a = 10;
+            int a = 24;
             return a;
         }
     }

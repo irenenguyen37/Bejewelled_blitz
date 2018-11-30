@@ -1,4 +1,10 @@
-3
+9
+1 60 58
+Csoni 6 19
+Csoni 6 18
+Csoni 6 10
+Csoni 6 10
+Csoni 6 8
 cs 3 11
 csoni 3 6
 Csoni 3 2

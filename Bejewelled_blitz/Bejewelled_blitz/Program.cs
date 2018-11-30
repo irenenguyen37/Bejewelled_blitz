@@ -43,10 +43,12 @@ namespace Bejewelled_blitz
                 while (stopwatch.ElapsedMilliseconds / 1000 < time)
                 {
                     xy = table.chng();
+                    stopwatch.Stop();
                     table.pnt(xy[0], xy[1]);
                     table.pnt(xy[2], xy[3]);
                     table.wrt();
                     table.reWrt(a, b, n);
+                    stopwatch.Start();
 
                     Console.SetCursorPosition(50, 1);
                     Console.Write("Pontok: " + table.Point);
